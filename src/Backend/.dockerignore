@@ -6,3 +6,9 @@
 .vscode/
 .idea/
 **/*.user
+**/*.log
+**/.git/
+**/node_modules/
+**/Dockerfile*
+**/*.md
+**/docker-compose*
