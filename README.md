@@ -1,73 +1,95 @@
-# Welcome to your Lovable project
 
-## Project info
+# BookStore API - .NET Docker Practice Project
 
-**URL**: https://lovable.dev/projects/7d613c33-2aba-4882-9485-aa18b50e36bc
+This is a simple ASP.NET Core Web API project for a bookstore. It's designed to help you practice Docker containerization with a real-world .NET application.
 
-## How can I edit this code?
+## Project Overview
 
-There are several ways of editing your application.
+- **Technology**: ASP.NET Core 6.0 Web API
+- **Database**: In-memory Entity Framework Core (for simplicity)
+- **API Documentation**: Swagger/OpenAPI
+- **Architecture**: RESTful API with CRUD operations
 
-**Use Lovable**
+## Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7d613c33-2aba-4882-9485-aa18b50e36bc) and start prompting.
+- Complete CRUD operations for managing books
+- Swagger UI for API documentation and testing
+- Entity Framework Core for data access
+- Docker configuration for containerization
+- Health check endpoint
 
-Changes made via Lovable will be committed automatically to this repo.
+## Running the Application Locally
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+- (Optional) Visual Studio 2022 or Visual Studio Code
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Steps to Run Locally
 
-Follow these steps:
+1. Clone this repository
+2. Navigate to the project directory:
+   ```
+   cd src/Backend
+   ```
+3. Run the application:
+   ```
+   dotnet run --project BookStore.API
+   ```
+4. Open your browser and navigate to:
+   - Swagger UI: https://localhost:5001
+   - API endpoint: https://localhost:5001/api/books
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Docker Deployment Guidelines
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Basic Docker Commands
 
-# Step 3: Install the necessary dependencies.
-npm i
+1. **Build the Docker image**:
+   ```
+   cd src/Backend
+   docker build -t bookstore-api .
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+2. **Run the container**:
+   ```
+   docker run -p 5000:80 -p 5001:443 --name bookstore-container bookstore-api
+   ```
 
-**Edit a file directly in GitHub**
+3. **View running containers**:
+   ```
+   docker ps
+   ```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+4. **Stop the container**:
+   ```
+   docker stop bookstore-container
+   ```
 
-**Use GitHub Codespaces**
+5. **Using docker-compose**:
+   ```
+   docker-compose up
+   ```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Docker Concepts to Practice
 
-## What technologies are used for this project?
+- **Optimizing Dockerfile** - Try minimizing image size and layers
+- **Environment Variables** - Configure different environments
+- **Volumes** - For data persistence
+- **Networking** - Connect multiple containers
+- **Docker Compose** - Manage multi-container deployments
+- **Health Checks** - Ensure your container is healthy
 
-This project is built with:
+## API Endpoints
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- `GET /api/books` - Get all books
+- `GET /api/books/{id}` - Get a book by ID
+- `POST /api/books` - Create a new book
+- `PUT /api/books/{id}` - Update an existing book
+- `DELETE /api/books/{id}` - Delete a book
+- `GET /api/health` - Check API health
 
-## How can I deploy this project?
+## Learning Resources
 
-Simply open [Lovable](https://lovable.dev/projects/7d613c33-2aba-4882-9485-aa18b50e36bc) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- [Docker Documentation](https://docs.docker.com/)
+- [ASP.NET Core Docker Guide](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/building-net-docker-images)
+- [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
